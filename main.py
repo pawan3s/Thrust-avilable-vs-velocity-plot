@@ -1,13 +1,12 @@
 from numpy import pi
 import matplotlib.pyplot as plt
 
-# Functions
-def knots_to_ftpersec(speed):
-    return speed * 1.68781
+def conv_knots_to_ftpersec(velocity):
+    return velocity * 1.68781
 
-def thrust_required(rho_inf, v_inf, s, cd0_, k, w):
-    cl = 2 * w / (rho_inf * v_inf ** 2 * s)
-    return 0.5 * rho_inf * v_inf ** 2 * s * (cd0_ + k * cl ** 2)
+def required_thrust(rho, v, s, cd0_, k, w):
+    cl = 2 * w / (rho * v ** 2 * s)
+    return 0.5 * rho * v ** 2 * s * (cd0_ + k * cl ** 2)
 
 # Inputs
 weight = 200000  # lb
@@ -22,7 +21,7 @@ rho_sl = 23.77E-4  # in slugs/ft^3
 
 x_vals_sl = [i for i in range(80, 750, 10)]
 
-tr_sl = [thrust_required(rho_sl, knots_to_ftpersec(x), wing_area, cd0, K, weight) for x in x_vals_sl]
+tr_sl = [required_thrust(rho_sl, conv_knots_to_ftpersec(x), wing_area, cd0, K, weight) for x in x_vals_sl]
 
 
 # Sea Level
@@ -44,5 +43,4 @@ plt.ylabel('Thrust (lb)')
 plt.xlabel('Velocity (kts)')
 plt.title('Thrust Required & Thrust Available Curves')
 plt.legend(loc='lower right')
-#plt.show()
-plt.savefig("output/chap2_1.png")
+plt.show()
