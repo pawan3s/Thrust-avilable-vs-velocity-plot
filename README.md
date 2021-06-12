@@ -18,4 +18,4 @@ e = 0.92
 K = 1 / (pi * e * aspect_ratio)
 densitity at sea level = 23.77E-4 slugs/ft^3
 
-SOurce: https://en.wikipedia.org/wiki/Airbus_A321
+Source: https://en.wikipedia.org/wiki/Airbus_A321
